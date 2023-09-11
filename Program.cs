@@ -37,6 +37,9 @@ namespace sudokuCLI{
             feladvanyLIST = beolvasas();
             Console.WriteLine("3. feladat: Beolvasva " + feladvanyLIST.Count + " feladvány\n");
 
+            negyedikFeladatX();
+            
+            
             Console.ReadKey();
         }
 
@@ -48,6 +51,38 @@ namespace sudokuCLI{
             }
 
             return ideiglenes;
+        }
+
+        static void negyedikFeladatX(){
+            Console.WriteLine("4. feladat: Kérem adja meg a feladvány méretét [4..9]: ");
+            String x = Console.ReadLine();
+            try{
+                int meretX = Int32.Parse(x);
+                if(meretX < 10 && meretX > 3){
+                    negyedikFeladat(meretX);
+                }else{
+                    negyedikFeladatX();
+                }
+            }catch(Exception e){
+                Console.WriteLine(e);
+                negyedikFeladatX();
+            }
+        } 
+
+        static void negyedikFeladat(int meretX){
+            int talatMeret = 0;
+
+            foreach (Feladvany feladvany in feladvanyLIST){
+                if(feladvany.Meret == meretX){
+                    talatMeret++;
+
+                }
+            }
+
+
+            
+            Console.WriteLine(meretX+"x"+meretX + " méretű feladványból " + talatMeret + " darab van tárolva");
+            
         }
     }
 }
