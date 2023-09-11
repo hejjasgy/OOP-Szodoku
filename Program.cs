@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace sudokuCLI{
     class Feladvany{
@@ -27,9 +29,25 @@ namespace sudokuCLI{
 
 
     internal class Program{
+
+        private static List<Feladvany> feladvanyLIST = new List<Feladvany>();
+        
         public static void Main(string[] args){
-            
-            
+
+            feladvanyLIST = beolvasas();
+            Console.WriteLine("3. feladat: Beolvasva " + feladvanyLIST.Count + " feladvány\n");
+
+            Console.ReadKey();
+        }
+
+        static List<Feladvany> beolvasas(){
+            List<Feladvany> ideiglenes = new List<Feladvany>();
+            StreamReader streamReader = new StreamReader("feladvanyok.txt");
+            while(!streamReader.EndOfStream){
+                ideiglenes.Add(new Feladvany(streamReader.ReadLine()));
+            }
+
+            return ideiglenes;
         }
     }
 }
